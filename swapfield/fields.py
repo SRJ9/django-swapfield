@@ -6,7 +6,18 @@ from django.core.exceptions import ValidationError
 
 def _init_swap_integers(instance):
     if not hasattr(instance, 'swap_integers'):
-        instance.swap_integers = []
+        instance.swap_integers = {}
+
+
+def _set_swap_integers(instance, predecessor, swap_value, column):
+    _init_swap_integers(instance)
+    predecessor_key = 'instance_{key}'.format(key=predecessor.pk)
+    if predecessor_key not in instance.swap_integers:
+        instance.swap_integers[predecessor_key] = {
+            'value_predecessor': predecessor,
+            'columns': {}
+        }
+    instance.swap_integers[predecessor_key]['columns'][column] = swap_value
 
 
 class SwapIntegerField(models.IntegerField):
@@ -43,8 +54,11 @@ class SwapIntegerField(models.IntegerField):
         swap_integers = getattr(instance, 'swap_integers', None)
         if swap_integers:
             for x in swap_integers:
-                value_predecessor = x.get('value_predecessor')
-                setattr(value_predecessor, x.get('column'), x.get('new_value'))
+                current_predecessor = swap_integers.get(x)
+                value_predecessor = current_predecessor.get('value_predecessor')
+                columns = current_predecessor.get('columns')
+                for column in columns:
+                    setattr(value_predecessor, column, columns.get(column))
                 value_predecessor.save()
 
     def get_swap_objects(self, sender, instance, **kwargs):
@@ -57,10 +71,7 @@ class SwapIntegerField(models.IntegerField):
             if new_value != swap_value:
                 predecessor = self._get_predecessor(instance, new_value)
                 if predecessor:
-                    _init_swap_integers(instance)
-                    instance.swap_integers.append(
-                        {'value_predecessor': predecessor, 'new_value': swap_value, 'column': column}
-                    )
+                    _set_swap_integers(instance, predecessor, swap_value, column)
 
     def _get_swap_value(self, instance):
         swap_value = self._get_old_value(instance)  # TODO Maybe exists best method to get this value
