@@ -29,8 +29,8 @@ Method
 -  In next versions, other method will be used when exists
    unique/unique\_together restriction.
 
-Pendings
-========
+to-do list
+==========
 
 -  [ ] Two or more django-swapfield in the same object.
 -  [ ] Alternative method when exists unique/unique\_together
@@ -38,4 +38,4 @@ Pendings
 -  [ ] Friendly validation error with Django Admin (no Fatal error)
 -  [ ] Abstract django-swap-field
 -  [ ] SwapCharField
--  [ ] Add tests
+-  [x] Add tests

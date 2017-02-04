@@ -19,11 +19,11 @@ what contains the new value to assign it the old value from registry what curren
 saved, replace the other registry with old value.
 * In next versions, other method will be used when exists unique/unique_together restriction.
 
-Pendings
-========
+to-do list
+==========
 - [ ] Two or more django-swapfield in the same object.
 - [ ] Alternative method when exists unique/unique_together restriction
 - [ ] Friendly validation error with Django Admin (no Fatal error)
 - [ ] Abstract django-swap-field
 - [ ] SwapCharField
-- [ ] Add tests
+- [x] Add tests
