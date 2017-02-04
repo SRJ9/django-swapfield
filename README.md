@@ -26,4 +26,7 @@ to-do list
 - [ ] Friendly validation error with Django Admin (no Fatal error)
 - [ ] Abstract django-swap-field
 - [ ] SwapCharField
-- [x] Add tests
+- [x] Tests for functionality
+- [ ] Tests for migrations
+- [ ] Config setting to choose swap value when a new record (not edited) get a value that exists in database: choose the
+max value +1 or the first available.

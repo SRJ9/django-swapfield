@@ -21,3 +21,14 @@ class SwapTestCase(TestCase):
         # player b number must be 1
         player_b = Player.objects.get(name='Player B')
         self.assertEqual(player_b.number, 1)
+
+        Player.objects.create(name='Player D', team=team_a, number=25)
+
+        # Player D get number 25, Player C will get the next available (26)
+        player_c = Player.objects.get(name='Player C')
+        self.assertEqual(player_c.number, 26)
+
+        # TODO Config setting to choose swap value when a new record (not edited) get a value that exists in database
+        # Value in predecessor record can be:
+        # - The next available (current behavior): max value + 1
+        # - The first available: [1, 8, 25, 26] --> 2 is the first available.
