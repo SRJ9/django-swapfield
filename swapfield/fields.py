@@ -8,7 +8,7 @@ def _init_swap_integers(instance):
         instance.swap_integers = []
 
 
-class FulanitoField(models.IntegerField):
+class SwapIntegerField(models.IntegerField):
 
     def __init__(self, **kwargs):
         unique_for_fields = kwargs.get('unique_for_fields')
@@ -20,16 +20,16 @@ class FulanitoField(models.IntegerField):
         self.unique_for_fields = unique_for_fields
         if 'unique_for_fields' in kwargs:
             del kwargs['unique_for_fields']
-        super(FulanitoField, self).__init__(**kwargs)
+        super(SwapIntegerField, self).__init__(**kwargs)
 
     def deconstruct(self):
-        name, path, args, kwargs = super(FulanitoField, self).deconstruct()
+        name, path, args, kwargs = super(SwapIntegerField, self).deconstruct()
         if self.unique_for_fields:
             kwargs['unique_for_fields'] = self.unique_for_fields
         return name, path, args, kwargs
 
     def contribute_to_class(self, cls, name, *args, **kwargs):
-        super(FulanitoField, self).contribute_to_class(cls, name)
+        super(SwapIntegerField, self).contribute_to_class(cls, name)
         for constraint in cls._meta.unique_together:
             if self.name in constraint:
                 raise TypeError("%s can't be part of a unique constraint." % self.__class__.__name__)

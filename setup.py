@@ -5,11 +5,11 @@ README_TEXT = readme.read()
 readme.close()
 
 setup(
-    name='django-swap-integer',
+    name='django-swapfield',
     version='0.1.0',
     packages=find_packages(),
-    url='https://github.com/SRJ9/django-swap-field.git',
-    download_url='https://github.com/SRJ9/django-swap-field/archive/master.zip',
+    url='https://github.com/SRJ9/django-swapfield.git',
+    download_url='https://github.com/SRJ9/django-swapfield/archive/master.zip',
     license='MIT',
     author='Jose ER',
     author_email='srj9es@gmail.com',

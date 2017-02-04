@@ -1,5 +1,5 @@
-# django-swap-field
-Easy! When you use django-swap-field if the value is saved in other record, values are swapped! You can configure what 
+# django-swapfield
+Easy! When you use django-swapfield if the value is saved in other record, values are swapped! You can configure what 
 conditions must be repeated in both records to make the change.
 
 Uses e.g.
@@ -21,7 +21,7 @@ saved, replace the other registry with old value.
 
 Pendings
 ========
-- [ ] Two or more django-swap-field in the same object.
+- [ ] Two or more django-swapfield in the same object.
 - [ ] Alternative method when exists unique/unique_together restriction
 - [ ] Friendly validation error with Django Admin (no Fatal error)
 - [ ] Abstract django-swap-field

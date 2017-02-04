@@ -1,7 +1,7 @@
-django-swap-field
-=================
+django-swapfield
+================
 
-| Easy! When you use django-swap-field if the value is saved in other
+| Easy! When you use django-swapfield if the value is saved in other
   record, values are swapped! You can configure what
 | conditions must be repeated in both records to make the change.
 
@@ -32,7 +32,7 @@ Method
 Pendings
 ========
 
--  [ ] Two or more django-swap-field in the same object.
+-  [ ] Two or more django-swapfield in the same object.
 -  [ ] Alternative method when exists unique/unique\_together
    restriction
 -  [ ] Friendly validation error with Django Admin (no Fatal error)
