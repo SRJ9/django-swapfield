@@ -38,3 +38,4 @@ Pendings
 -  [ ] Friendly validation error with Django Admin (no Fatal error)
 -  [ ] Abstract django-swap-field
 -  [ ] SwapCharField
+-  [ ] Add tests
