@@ -2,11 +2,31 @@
 Easy! When you use django-swapfield if the value is saved in other record, values are swapped! You can configure what 
 conditions must be repeated in both records to make the change.
 
+How to
+======
+~~~~ {.sourceCode .bash}
+$ pip install django-swapfield
+$ # Define a SwapIntegerField in your model with unique_for_fields param (fields coincidence to can swap values)
+$ # That SwapIntegerField can't be a part of unique_together or unique restriction.
+~~~~
+
 Uses e.g.
 ========
 * Uniform number in sport team.
 * Race number in an athletic competition.
 * Any scenario when you want to swap values without reordering.
+
+example
+=======
+~~~~ {.sourceCode .bash}
+from swapfield.fields import SwapIntegerField
+
+class Player(models.Model):
+    name = models.CharField(max_length=30)
+    team = models.ForeignKey(Team)
+    number = SwapIntegerField(unique_for_fields=['team'])
+    # can swap "number" if "team" has the same value
+~~~~
 
 Available fields
 ================
