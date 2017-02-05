@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name='django-swapfield',
-    version='0.1.0',
+    version='0.1.1',
     packages=find_packages(),
     url='https://github.com/SRJ9/django-swapfield.git',
     download_url='https://github.com/SRJ9/django-swapfield/archive/master.zip',

@@ -63,12 +63,12 @@ class SwapIntegerField(models.IntegerField):
 
     def get_swap_objects(self, sender, instance, **kwargs):
         column = self.column
-        # We need the value of field saved in database or the next available
-        #  to swap with the object that contains the new value.
-        swap_value = self._get_swap_value(instance)
-        if swap_value:
-            new_value = getattr(instance, column)
-            if new_value != swap_value:
+        new_value = getattr(instance, column)
+        if new_value:
+            # We need the value of field saved in database or the next available
+            #  to swap with the object that contains the new value.
+            swap_value = self._get_swap_value(instance)
+            if swap_value and new_value != swap_value:
                 predecessor = self._get_predecessor(instance, new_value)
                 if predecessor:
                     _set_swap_integers(instance, predecessor, swap_value, column)
@@ -84,7 +84,7 @@ class SwapIntegerField(models.IntegerField):
     def _get_old_value(self, instance):
         if instance.pk:
             old_instance = self.model.objects.filter(pk=instance.pk).first()
-            return getattr(old_instance, self.column)
+            return getattr(old_instance, self.column) if old_instance else None
         return None
 
     def _get_common_filter(self, instance):
@@ -101,9 +101,9 @@ class SwapIntegerField(models.IntegerField):
         queryset = self.model.objects.filter(**query_filter)
         if queryset.count():
             aggregate = queryset.aggregate(value__max=Max(self.column))
-            return aggregate.get('value__max') + 1
+            value_max = aggregate.get('value__max')
+            return value_max + 1 if value_max else None
         return None
-        # return queryset.aggregate(Max(self.column)) + 1
 
     def _get_predecessor(self, instance, data):
         query_filter = self._get_common_filter(instance)
