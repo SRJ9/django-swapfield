@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase
-from .project.testapp.models import Team, Player
+
+from testapp.models import Team, Player
 
 
 class SwapTestCase(TestCase):

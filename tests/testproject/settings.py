@@ -1,6 +1,8 @@
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -10,11 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'test.db',               # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': os.path.join(BASE_DIR, 'test.db'),
     }
 }
 SITE_ID = 1
@@ -37,13 +35,16 @@ SECRET_KEY = 'test project'
 #     'django.contrib.messages.middleware.MessageMiddleware',
 # )
 
-ROOT_URLCONF = 'testapp.urls'
+ROOT_URLCONF = 'tests.testproject.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+import sys
+print(sys.path)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -52,4 +53,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tests.testapp',
 )
