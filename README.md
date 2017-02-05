@@ -1,3 +1,5 @@
+[![Build
+Status](https://travis-ci.org/SRJ9/django-swapfield.svg?branch=master)](https://travis-ci.org/SRJ9/django-swapfield)
 # django-swapfield
 Easy! When you use django-swapfield if the value is saved in other record, values are swapped! You can configure what 
 conditions must be repeated in both records to make the change.

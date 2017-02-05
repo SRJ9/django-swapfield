@@ -1,3 +1,4 @@
+|Build Status|
 django-swapfield
 ================
 
@@ -67,3 +68,6 @@ to-do list
 -  [ ] Config setting to choose swap value when a new record (not
    edited) get a value that exists in database: choose the
    max value +1 or the first available.
+
+.. |Build Status| image:: https://travis-ci.org/SRJ9/django-swapfield.svg?branch=master
+   :target: https://travis-ci.org/SRJ9/django-swapfield
